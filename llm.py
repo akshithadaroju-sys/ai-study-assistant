@@ -1,15 +1,20 @@
-import openai
 import os
+from google import genai
+from google.genai.errors import ServerError
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 def generate_response(prompt):
-    response = openai.ChatCompletion.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": "You are an AI study assistant that explains concepts simply."},
-            {"role": "user", "content": prompt}
-        ]
-    )
-
-    return response["choices"][0]["message"]["content"]
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt
+        )
+        return response.text
+    except ServerError as e:
+        # Catch 503 errors and return a clean fallback string
+        print(f"Google API Server Error: {e}")
+        return "ERROR_503_OVERLOAD"
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return "ERROR_GENERIC"
