@@ -1,60 +1,31 @@
 # 📚 AI Study Assistant
 
 ## Application Preview
-
-![AI Study Assistant](b9c8f80f-fac6-4b3d-9978-d683c37a34d3.jpg)
-
-An AI-powered Study Assistant built using Streamlit, Ollama, and LangChain.
+An AI-powered Study Assistant built using Streamlit and the Google Gemini API.
 
 ## Features
-
-- PDF Upload & Analysis
-- AI Chat Assistant
-- PDF Summarization
-- Flashcard Generation
-- Quiz Generation
-- English, Hindi, Telugu Support
-- Local AI using Ollama
-- FAISS Vector Search
+* 📄 PDF Upload & Analysis (using PyPDF)
+* 💬 AI Chat Assistant 
+* 🧠 PDF Summarization (Bullet Points)
+* 🎴 Flashcard Generation
+* ❓ Dynamic Quiz Generation & Interactive Scoring System
+* 🌍 English, Hindi, and Telugu Language Support
+* ☁️ Cloud AI Orchestration using Google GenAI SDK
 
 ## Tech Stack
-
-- Python
-- Streamlit
-- LangChain
-- Ollama
-- PyPDF2
-- FAISS
+* **Frontend/UI:** Streamlit
+* **LLM Engine:** Google Gemini (`gemini-2.5-flash`)
+* **PDF Parser:** PyPDF
+* **Deployment Platform:** Streamlit Community Cloud
 
 ## Run Locally
-
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
-```
-
-## Project Structure
-
-```text
+# project structure
 ai-study-assistant/
 │
-├── app.py
-├── llm.py
-├── rag.py
-├── utils.py
-├── memory.py
-├── summary.py
-├── flashcards.py
-├── quiz.py
-├── vectorstore.py
-├── requirements.txt
-│
-└── translations/
-    ├── en.json
-    ├── hi.json
-    └── te.json
-```
-
-## Author
-
-Akshitha Daroju
+├── app.py           # Main Streamlit Application UI & Logic
+├── llm.py           # Google GenAI SDK Client Initialization
+├── translations.py  # Multilingual String Dictionary Map
+└── requirements.txt # Cloud Application Dependencies
