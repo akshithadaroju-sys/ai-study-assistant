@@ -1,10 +1,15 @@
-import streamlit as st
-import google.generativeai as genai
+import openai
+import os
 
-genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-
-model = genai.GenerativeModel("gemini-1.5-flash")
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def generate_response(prompt):
-    response = model.generate_content(prompt)
-    return response.text
+    response = openai.ChatCompletion.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "You are an AI study assistant that explains concepts simply."},
+            {"role": "user", "content": prompt}
+        ]
+    )
+
+    return response["choices"][0]["message"]["content"]
