@@ -1,10 +1,10 @@
-from langchain_community.llms import Ollama
+import streamlit as st
+import google.generativeai as genai
 
-# Load the model once
-llm = Ollama(model="llama3")
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 def generate_response(prompt):
-    """
-    Sends prompt to LLM and returns response
-    """
-    return llm.invoke(prompt)
+    response = model.generate_content(prompt)
+    return response.text
