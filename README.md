@@ -1,5 +1,9 @@
 # 📚 AI Study Assistant
 
+## Application Preview
+
+![AI Study Assistant](b9c8f80f-fac6-4b3d-9978-d683c37a34d3.jpg)
+
 An AI-powered Study Assistant built using Streamlit, Ollama, and LangChain.
 
 ## Features
